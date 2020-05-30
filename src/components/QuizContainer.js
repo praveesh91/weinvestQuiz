@@ -29,6 +29,15 @@ class QuizContainer extends React.Component {
   loadQuizData = () => {
     // console.log(quizData[0].question
     const answer = this.state.quizInfo[this.state.currentQuestion].correct_answer
+    const optionsNames = this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+    function shuffle(optionsNames) {
+      optionsNames.sort(() => Math.random() - 0.5);
+      console.log(optionsNames)
+      // const values = array
+      return optionsNames
+    }
+    shuffle(optionsNames)
+
     // console.log(answer)
     // const options = (this.state.quizInfo[this.state.currentQuestion].incorrect_answers).concat(answer)
     // console.log("oprions", options)
@@ -36,7 +45,8 @@ class QuizContainer extends React.Component {
       return {
         questions: this.state.quizInfo[this.state.currentQuestion].question,
         answer: this.state.quizInfo[this.state.currentQuestion].correct_answer,
-        options: this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+        // options: this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+        options: optionsNames
       };
     });
   };
@@ -50,7 +60,7 @@ class QuizContainer extends React.Component {
 
     this.myInterval = setInterval(() => {
         const { seconds } = this.state
-        console.log("Interval")
+        // console.log("Interval")
         if (seconds > 0) {
             this.setState(({ seconds }) => ({
                 seconds: seconds - 1
@@ -81,9 +91,13 @@ class QuizContainer extends React.Component {
     // this.props.onNextQuestion();
 
     if (myAnswer === answer) {
+      console.log("TRUE")
       this.setState((prevState) =>({
         score: prevState.score + 1
       }))
+    }
+    else{
+      console.log("FALSE")
     }
     this.setState({
       currentQuestion: this.state.currentQuestion + 1,
@@ -97,14 +111,22 @@ class QuizContainer extends React.Component {
     // console.log("currentQuestion",this.state.currentQuestion+1)
     // console.log("quizInfo.length",this.state.quizInfo.length)
     // console.log("componentDidUpdate")
-    const answer = this.state.quizInfo[this.state.currentQuestion].correct_answer
+    const answer = this.state.quizInfo[this.state.currentQuestion].correct_answer;
+    const optionsNames = this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+    function shuffle(optionsNames) {
+      optionsNames.sort(() => Math.random() - 0.5);
+      // console.log(optionsNames)
+      return optionsNames
+    }
+    shuffle(optionsNames)
     if (this.state.currentQuestion !== prevState.currentQuestion) {
       this.setState((state) => {
         return {
           disabled: true,
           questions: this.state.quizInfo[this.state.currentQuestion].question,
           answer: this.state.quizInfo[this.state.currentQuestion].correct_answer,
-          options: this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+          // options: this.state.quizInfo[this.state.currentQuestion].incorrect_answers.concat(answer)
+          options: optionsNames
         };
       });
     }
@@ -127,7 +149,7 @@ class QuizContainer extends React.Component {
   render() {
     const { options, myAnswer, currentQuestion, isEnd, seconds } = this.state;
     // console.log("My answer", myAnswer)
-    console.log("Score", this.state.score)
+    // console.log("Score", this.state.score)
     // console.log(this.state.quizInfo)
     if (isEnd) {
       return (

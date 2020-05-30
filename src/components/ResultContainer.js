@@ -6,7 +6,7 @@ export default function ResultContainer(props) {
         <Row>
           <Col>
             <div className="result">
-              <h3>Game Over your Final score is {props.finalScore + 1} out of 10 </h3>
+              <h3>Game Over your Final score is {props.finalScore} out of 10 </h3>
             </div>
           </Col>
         </Row>

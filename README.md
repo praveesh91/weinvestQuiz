@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### npm install
 ### npm start
 
+### Answer result for each question is printed in the browser console
+
 ## Available Scripts
 
 In the project directory, you can run:
