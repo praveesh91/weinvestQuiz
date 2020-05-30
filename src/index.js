@@ -1,17 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import{Container} from 'react-bootstrap'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import {Provider} from 'react-redux'
+import reducer from './redux/reducer'
+import {createStore} from 'redux'
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "./styles.css";
+import QuizContainer from "./components/QuizContainer";
+
+const store = createStore(reducer)
+
+function App() {
+  return (
+    <Provider store={store}>
+      <div className="App">
+        <Container>
+            <QuizContainer />
+        </Container>
+      </div>
+    </Provider>
+    
+  );
+}
+
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
