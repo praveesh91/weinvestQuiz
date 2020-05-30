@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Steps to setup project in local
-### git clone 
+### git clone https://github.com/praveesh91/weinvestQuiz.git
 ### npm install
 ### npm start
 
